@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import classes from './Header.module.css'
+import CartContext from '../../store/cart-context'
 const Header = (props) => {
+  const cartCtx = useContext(CartContext)
+
   return (
     <header className={classes.header}>
       <h4>E-commerce</h4>
@@ -15,7 +18,7 @@ const Header = (props) => {
           props.onClick()
         }}
       >
-        cart
+        cart ({cartCtx.items.length})
       </button>
     </header>
   )

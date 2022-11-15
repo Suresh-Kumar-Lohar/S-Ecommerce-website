@@ -1,41 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import CartItem from './CartItem'
 import classes from './Cart.module.css'
-const cartElements = [
-  {
-    title: 'Colors',
-    price: 100,
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-    quantity: 2,
-  },
-  {
-    title: 'Black and white Colors',
-    price: 50,
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-    quantity: 3,
-  },
-  {
-    title: 'Yellow and Black Colors',
-    price: 70,
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-    quantity: 1,
-  },
-]
+import { FaRegWindowClose } from 'react-icons/fa'
+import CartContext from '../../store/cart-context'
 
-const Cart = () => {
-  const [cartItems, setCartItems] = useState([...cartElements])
+const Cart = (props) => {
+  // const [cartItems, setCartItems] = useState([...cartElements])
+  const cartCtx = useContext(CartContext)
+
+  let total = cartCtx.items.reduce((acc, cur) => {
+    return (acc = acc + Number(cur.price) * Number(cur.quantity))
+  }, 0)
+
   return (
     <div className={classes.cart}>
+      <button className={classes.crtBtn} onClick={props.onClick}>
+        X
+      </button>
       <h2>CART</h2>
       <div className={classes.cartDetails}>
         <h3>ITEM</h3>
         <h3>PRICE</h3>
         <h3>QUANTITY</h3>
       </div>
-      {cartItems.map((item) => (
-        <CartItem key={item.title} item={item} />
-      ))}
-      <h4>Total : 420</h4>
+      {cartCtx.items.map((item) => {
+        return <CartItem key={item.id} item={item} />
+      })}
+      <h4>Total : {total}</h4>
       <button className={classes.btn}>PURCHASE</button>
     </div>
   )
