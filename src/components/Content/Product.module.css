@@ -1,0 +1,44 @@
+.product {
+  width: 300px;
+  display: flex;
+  background-color: rgb(229, 235, 241);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.imgContainer {
+  overflow: hidden;
+  height: 15rem;
+  width: 15rem;
+}
+
+.imgContainer img {
+  display: block;
+  width: 100%;
+  transition: all 0.4s;
+}
+
+.imgContainer img:hover {
+  transform: scale(1.5);
+}
+
+.btn {
+  background-color: rgb(70, 168, 176);
+  padding: 0.3rem;
+  font-size: 0.8rem;
+  color: white;
+  font-weight: bold;
+  border-style: none;
+  border-radius: 5px;
+  margin-left: 8rem;
+}
+
+.btn:hover {
+  background-color: rgb(40, 123, 131);
+}

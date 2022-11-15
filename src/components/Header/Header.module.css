@@ -1,0 +1,41 @@
+.header {
+  position: sticky;
+  display: flex;
+  top: 0;
+  left: 0;
+  height: 3.5rem;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background: black;
+  color: white;
+  font-weight: 500;
+  margin: 0;
+  border-bottom: 1px solid white;
+  z-index: 10;
+  font-size: 1.5rem;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 4.5rem;
+}
+
+li {
+  cursor: pointer;
+}
+
+h4 {
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+.btn {
+  margin-right: 2rem;
+  cursor: pointer;
+  /* padding: 0.5rem; */
+  width: 5rem;
+  font-size: 1.5rem;
+}
