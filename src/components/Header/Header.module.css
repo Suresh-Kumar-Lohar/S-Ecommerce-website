@@ -5,10 +5,9 @@
   left: 0;
   height: 3.5rem;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background: black;
-  color: white;
   font-weight: 500;
   margin: 0;
   border-bottom: 1px solid white;
@@ -21,6 +20,10 @@
   list-style: none;
   align-items: center;
   gap: 4.5rem;
+}
+.navList a {
+  text-decoration: none;
+  color: white;
 }
 
 li {

@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import classes from './Content.module.css'
 import Product from './Product'
+import CartContext from '../../store/cart-context'
 
 const productsArr = [
   {
@@ -29,10 +30,19 @@ const productsArr = [
   },
 ]
 
-const Content = () => {
+const Content = (props) => {
+  const cartCtx = useContext(CartContext)
   const [products, setProducts] = useState([...productsArr])
   return (
     <div className={classes.content}>
+      <button
+        className={classes.btn2}
+        onClick={() => {
+          props.onClick()
+        }}
+      >
+        cart ({cartCtx.items.length})
+      </button>
       <h1 className={classes.h1}>MUSIC</h1>
       <div className={classes.products}>
         {products.map((each) => (

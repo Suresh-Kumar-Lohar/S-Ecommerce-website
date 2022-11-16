@@ -1,25 +1,24 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import classes from './Header.module.css'
-import CartContext from '../../store/cart-context'
-const Header = (props) => {
-  const cartCtx = useContext(CartContext)
+import { Link } from 'react-router-dom'
+// import CartContext from '../../store/cart-context'
+const Header = () => {
+  // const cartCtx = useContext(CartContext)
 
   return (
     <header className={classes.header}>
-      <h4>E-commerce</h4>
+      {/* <h4>E-commerce</h4> */}
       <ul className={classes.navList}>
-        <li>HOME</li>
-        <li>STORE</li>
-        <li>ABOUT</li>
+        <li>
+          <Link to='/home'>HOME</Link>
+        </li>
+        <li>
+          <Link to='/store'>STORE</Link>
+        </li>
+        <li>
+          <Link to='/about'>ABOUT</Link>
+        </li>
       </ul>
-      <button
-        className={classes.btn}
-        onClick={() => {
-          props.onClick()
-        }}
-      >
-        cart ({cartCtx.items.length})
-      </button>
     </header>
   )
 }
