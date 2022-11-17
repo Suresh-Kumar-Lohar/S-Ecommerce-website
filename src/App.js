@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom'
 import Store from './pages/Store'
 import Home from './pages/Home'
 import About from './pages/About'
+import ContactUs from './pages/ContactUs'
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
       </Route>
       <Route path='/about'>
         <About />
+      </Route>
+      <Route path='/contact'>
+        <ContactUs />
       </Route>
       <Footer />
     </CartProvider>
