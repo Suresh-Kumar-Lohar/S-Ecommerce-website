@@ -12,22 +12,24 @@ const Product = (props) => {
   }
 
   return (
-    <Link to={`/products/${props.item.id}`}>
-      <div className={classes.product}>
+    <div className={classes.product}>
+      <Link to={`/products/${props.item.id}`}>
         <div className={classes.title}>
           <h3>{props.item.title}</h3>
         </div>
+      </Link>
+      <Link to={`/products/${props.item.id}`}>
         <div className={classes.imgContainer}>
           <img src={props.item.imageUrl} alt='product image' />
         </div>
-        <div className={classes.details}>
-          <h4>${props.item.price}</h4>
-          <button className={classes.btn} onClick={productAddHandler}>
-            ADD TO CART
-          </button>
-        </div>
+      </Link>
+      <div className={classes.details}>
+        <h4>${props.item.price}</h4>
+        <button className={classes.btn} onClick={productAddHandler}>
+          ADD TO CART
+        </button>
       </div>
-    </Link>
+    </div>
   )
 }
 
