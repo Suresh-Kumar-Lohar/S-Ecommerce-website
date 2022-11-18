@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import classes from './LoginPage.module.css'
+import AuthContext from '../store/auth-context'
+import { useHistory } from 'react-router-dom'
 
 const LoginPage = () => {
+  const authCtx = useContext(AuthContext)
+  const history = useHistory()
   const [isLogin, setIsLogin] = useState(true)
   const [isLoading, setIsLoading] = useState(false)
   const [userName, setUserName] = useState('')
@@ -38,7 +42,9 @@ const LoginPage = () => {
       setIsLoading(false)
       if (resp.ok) {
         const data = await resp.json()
+        authCtx.login(data.idToken)
         console.log(data)
+        history.replace('/store')
       } else {
         let errorMessage = 'Authentication failed'
         const data = await resp.json()
@@ -93,6 +99,9 @@ const LoginPage = () => {
           <p>
             <b>Sending Requests...</b>
           </p>
+        )}
+        {authCtx.isLoggedIn && (
+          <button onClick={() => authCtx.logout()}>Logout</button>
         )}
       </div>
     </form>

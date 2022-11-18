@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './Header.module.css'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 // import CartContext from '../../store/cart-context'
 const Header = () => {
   // const cartCtx = useContext(CartContext)
@@ -10,19 +10,29 @@ const Header = () => {
       {/* <h4>E-commerce</h4> */}
       <ul className={classes.navList}>
         <li>
-          <Link to='/home'>HOME</Link>
+          <NavLink activeClassName={classes.active} to='/home'>
+            HOME
+          </NavLink>
         </li>
         <li>
-          <Link to='/store'>STORE</Link>
+          <NavLink activeClassName={classes.active} to='/store'>
+            STORE
+          </NavLink>
         </li>
         <li>
-          <Link to='/about'>ABOUT</Link>
+          <NavLink activeClassName={classes.active} to='/about'>
+            ABOUT
+          </NavLink>
         </li>
         <li>
-          <Link to='/login'>Login</Link>
+          <NavLink activeClassName={classes.active} to='/login'>
+            Login/Logout
+          </NavLink>
         </li>
         <li>
-          <Link to='/contact'>CONTACT US</Link>
+          <NavLink activeClassName={classes.active} to='/contact'>
+            CONTACT US
+          </NavLink>
         </li>
       </ul>
     </header>

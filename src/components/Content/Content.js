@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import classes from './Content.module.css'
 import Product from './Product'
 import CartContext from '../../store/cart-context'
@@ -22,7 +21,14 @@ const Content = (props) => {
           <Product key={each.title} item={each} />
         ))}
       </div>
-      <button className={classes.btn}>See the cart</button>
+      <button
+        className={classes.btn}
+        onClick={() => {
+          props.onClick()
+        }}
+      >
+        See the cart
+      </button>
     </div>
   )
 }
