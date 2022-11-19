@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+import axios from 'axios'
 import CartContext from './cart-context'
+import AuthContext from './auth-context'
 
 const ProductsArr = [
   {
@@ -41,50 +43,75 @@ const ProductsArr = [
 ]
 
 const CartProvider = (props) => {
+  const authCtx = useContext(AuthContext)
   const [items, setItem] = useState([])
   const [productsArr, setProductsArr] = useState(ProductsArr)
+  const url = `https://crudcrud.com/api/cf6f3d8cb6324961b29b71a9e4044d0e/${authCtx.email}`
+
+  useEffect(() => {
+    async function fetchData() {
+      const getData = await axios.get(url)
+      // console.log(getData.data)
+      setItem([...getData.data])
+      // console.log(items)
+    }
+
+    fetchData()
+  }, [])
+
+  const PostData = async (item) => {
+    // console.log(authCtx.email)
+    // console.log(item)
+    await axios.post(url, item)
+
+    const getData = await axios.get(url)
+    // console.log(getData.data)
+    setItem([...getData.data])
+    // console.log(items)
+  }
 
   const addItemToCartHandler = (item) => {
     if (items.length === 0) {
-      setItem([item])
+      // setItem([item])
+      PostData(item)
       // console.log(items)
     } else {
+      // const getData = await axios.get(url)
       let valPresent = items.find((each) => each.title === item.title)
 
       if (valPresent) {
         alert('This item is already added to the cart')
       } else {
-        setItem([...items, item])
+        // setItem([...items, item])
+        PostData(item)
         // console.log(items)
       }
     }
   }
 
-  const removeItemFromCartHandler = (id) => {
-    console.log(id)
-    let afterRemovedList = items.filter((each) => {
-      if (each.id !== id) {
-        console.log('aaaaa')
-        return each
-      }
-    })
-    console.log(afterRemovedList)
-    //console.log(a)
-    setItem([...afterRemovedList])
+  const removeItemFromCartHandler = async (_id) => {
+    await axios.delete(`${url}/${_id}`)
+    const getData = await axios.get(url)
+    // console.log(getData.data)
+    setItem([...getData.data])
   }
 
-  const updateItemHandler = (id, quantity) => {
-    // console.log(id)
-    // console.log('update')
-    // console.log(quantity)
-    let updatedArr = items.map((each) => {
-      if (each.id === id) {
-        each.quantity = quantity
-        return each
-      }
-      return each
-    })
-    setItem([...updatedArr])
+  const updateItemHandler = async (item) => {
+    console.log(`${url}/${item._id}`)
+    console.log(item)
+    const updatedData = {
+      id: item.id,
+      title: item.title,
+      price: item.price,
+      imageUrl: item.imageUrl,
+      rating: item.rating,
+      description: item.description,
+      quantity: item.quantity,
+    }
+    await axios.put(`${url}/${item._id}`, updatedData)
+    const getData = await axios.get(url)
+    console.log(getData.data)
+    setItem([...getData.data])
   }
 
   const cartContext = {

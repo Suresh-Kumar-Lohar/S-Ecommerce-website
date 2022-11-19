@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import CartItem from './CartItem'
 import classes from './Cart.module.css'
-import { FaRegWindowClose } from 'react-icons/fa'
 import CartContext from '../../store/cart-context'
 
 const Cart = (props) => {
@@ -24,7 +23,7 @@ const Cart = (props) => {
         <h3>QUANTITY</h3>
       </div>
       {cartCtx.items.map((item) => {
-        return <CartItem key={item.id} item={item} />
+        return <CartItem key={item._id} item={item} />
       })}
       <h4>Total : {total}</h4>
       <button className={classes.btn}>PURCHASE</button>

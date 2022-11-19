@@ -7,7 +7,7 @@ const Product = (props) => {
   const cartCtx = useContext(CartContext)
 
   const productAddHandler = () => {
-    console.log(props)
+    // console.log(props)
     cartCtx.addItem({ ...props.item, quantity: 1 })
   }
 

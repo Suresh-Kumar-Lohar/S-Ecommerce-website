@@ -42,7 +42,7 @@ const LoginPage = () => {
       setIsLoading(false)
       if (resp.ok) {
         const data = await resp.json()
-        authCtx.login(data.idToken)
+        authCtx.login(data.idToken, userName)
         console.log(data)
         history.replace('/store')
       } else {

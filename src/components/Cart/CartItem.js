@@ -8,11 +8,13 @@ const CartItem = (props) => {
 
   const changeHandler = (e) => {
     setQuantity(e.target.value)
-    cartCtx.updateItem(props.item.id, e.target.value)
+    props.item.quantity = e.target.value
+    cartCtx.updateItem(props.item)
   }
 
   const removeHandler = () => {
-    cartCtx.removeItem(props.item.id)
+    console.log(props.item._id)
+    cartCtx.removeItem(props.item._id)
   }
 
   return (
@@ -28,7 +30,7 @@ const CartItem = (props) => {
           min='1'
           step='1'
           // defaultValue='1'
-          value={quantity}
+          value={props.item.quantity}
           onChange={changeHandler}
         />
         <button className={classes.btn} onClick={removeHandler}>
