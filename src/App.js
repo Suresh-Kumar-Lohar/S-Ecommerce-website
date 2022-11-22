@@ -21,11 +21,11 @@ function App() {
         <Route path='/' exact>
           <Redirect to='/store' />
         </Route>
-        {!authCtx.isLoggedIn && (
+        {/* {!authCtx.isLoggedIn && (
           <Route path='/login'>
             <LoginPage />
           </Route>
-        )}
+        )} */}
         <Route path='/home'>
           <Home />
         </Route>
